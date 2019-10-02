@@ -1,0 +1,22 @@
+{
+    "name": "sinevia/php-library-uid",
+    "description": "PHP Library Uid",
+    "type": "library",
+    "keywords": ["uid", "library", "php", "sinevia"],    
+    "homepage": "http://github.com/sinevia/php-library-uid",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Milan Lesichkov",
+            "email": "lesichkovm@gmail.com",
+            "homepage": "http://lesichkov.co.uk",
+            "role": "Lead Developer"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/Uid.php",
+            "src/Uuid.php"
+        ]
+    }
+}
