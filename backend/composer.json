@@ -1,6 +1,9 @@
 {
   "require": {
     "catfan/medoo": "^1.7",
-    "ramsey/uuid": "^3.8"
+    "ramsey/uuid": "^3.8",
+    "illuminate/http": "^6.1",
+    "josantonius/ip": "^1.1",
+    "jenssegers/agent": "^2.6"
   }
 }

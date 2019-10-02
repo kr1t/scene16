@@ -1,6 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
+    showPopup: false,
     reviews: ["ไม่เอา", "ก็ดีนะ", "พอทน", "เฉยๆ", "ก็ดีนะ", "ดี", "ดีงาม"],
     videos: [
       {
@@ -20,5 +21,18 @@ var app = new Vue({
         url: "https://youtu.be/aVS4W7GZSq0"
       }
     ]
+  },
+  methods: {
+    async sendReview(score) {
+      let formData = new FormData()
+      formData.append("score", score)
+      const { data } = await axios.post("backend/review.php", formData)
+      if (data) {
+        alert(data)
+      }
+    },
+    onEnd() {
+      this.showPopup = true
+    }
   }
 })
