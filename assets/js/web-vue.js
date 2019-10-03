@@ -28,7 +28,7 @@ var app = new Vue({
       formData.append("score", score)
       const { data } = await axios.post("backend/review.php", formData)
       if (data) {
-        alert(data)
+        Swal.fire({ title: data, confirmButtonText: "ตกลง" })
       }
     },
     onEnd() {

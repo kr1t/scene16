@@ -2,7 +2,7 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, initial-scale=1" />
+    <meta charset="utf-8" name="viewport" content="width=1310, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>FWD</title>
     <link
@@ -11,12 +11,13 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
     <div id="app">
-      <video width="100%" height="100%" controls @ended="onEnd()" v-if="!showPopup">
-        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      <video @ended="onEnd()" v-if="!showPopup" class="player" autoplay controls>
+        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
         Your browser does not support HTML5 video.
       </video>
 
@@ -30,6 +31,7 @@
             <span>We value your feedback. Please rate our service.</span>
           </div>
           <div class="review-score text-center">
+            <div class="line"></div>
             <button
               v-for="(review, index) in reviews"
               :key="index"
@@ -37,7 +39,10 @@
               @click="sendReview(index)"
             >
               <img :src="`assets/images/review/${index}.png`" alt="" />
-              {{ review }}
+
+              <span class="review-text">
+                {{ review }}
+              </span>
             </button>
           </div>
           <div class="thankyou text-center">
@@ -71,6 +76,10 @@
     <!-- - - - - - - - - - script - - - - - - - - - -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
     <script src="assets/js/web-vue.js"></script>
+    <script src="assets/js/web.js"></script>
   </body>
 </html>
