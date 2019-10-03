@@ -1,1 +1,2 @@
+    cd backend
     composer install
