@@ -10,6 +10,7 @@
     src: url(../fonts/KittithadaRoman55.woff2);
 }
 
+
 html {
     min-height: 100vh;
 }
@@ -27,6 +28,21 @@ button:focus {
     outline: 0;
 }
 
+.rotate {
+    min-height: 100vh;
+    background: #e87722;
+    text-align: center;
+    color: #fff;
+    font-family: mainFont !important;
+
+}
+
+
+.wrapper {
+    position: relative;
+    min-height: 100vh;
+}
+
 .swal2-container {
     font-family: mainFont !important;
 
@@ -37,7 +53,8 @@ button:focus {
 }
 
 .popup {
-    min-height: 100vh
+    min-height: 100vh;
+    position: fixed;
 }
 
 .player {
@@ -50,17 +67,16 @@ button:focus {
 
 .review-section {
     background: #e87722;
-    width: 70%;
-    border-right: 25px #f2cb56 solid;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     color: #fff;
+    padding-right: 400px;
     box-sizing: border-box;
     float: left;
 }
 
 .review-section .headline {
     text-align: center;
-    padding-top: 148px;
 
 }
 
@@ -91,10 +107,40 @@ button:focus {
     height: 100%;
 }
 
+@keyframes iline {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 50%;
+        opacity: 1;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+
+    @keyframes iline {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 48%;
+            opacity: 1;
+        }
+    }
+
+}
+
 .line {
-    width: 51%;
+    width: 50%;
     /* padding: 0 9%; */
     box-sizing: border-box;
+    animation: iline 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
     height: 9px;
     background: #fff;
     position: absolute;
@@ -105,7 +151,15 @@ button:focus {
     z-index: 0;
 }
 
+@media only screen and (min-width: 1440px) {
+    .line {
+        width: 48%;
+        left: 15%;
+        /* top: 53px; */
 
+    }
+
+}
 
 .review-score button img {
     border-radius: 50%;
@@ -130,8 +184,10 @@ button:focus {
 }
 
 .review-active {
-    border: #fff 5px solid;
-    margin-top: -50px;
+    -webkit-box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 1);
+    /* margin-top: -50px; */
     transform: scale(1.3);
 }
 
@@ -152,16 +208,37 @@ button:focus {
     text-align: center;
 }
 
+.aligner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.aligner-item--top {
+    align-self: flex-start;
+}
+
+.aligner-item--bottom {
+    align-self: flex-end;
+}
+
 /* - - - - - - --  video-section - - - - - - --  */
 
 .video-section {
     background: #e9e9e9;
     float: left;
-    width: 30%;
+    width: 400px;
+    position: absolute;
     overflow-y: auto;
-    padding: 0 4%;
+    padding: 0 50px;
+    top: 0;
+    right: 0;
     padding-top: 50px;
     min-height: 100vh;
+    overflow-y: scroll;
+    border-left: 15px #f2cb56 solid;
+
 }
 
 .video-section .logo {
@@ -169,6 +246,9 @@ button:focus {
     padding-bottom: 35px;
 }
 
+.video-section .scroll {
+    height: 100vh;
+}
 
 
 .video-list {
@@ -245,13 +325,13 @@ button:focus {
 }
 
 .popup-out {
-    position: absolute;
+    position: fixed;
     top: -150%;
     transform: scale(1.5);
 }
 
 .popup-in {
-    position: absolute;
+    position: fixed;
     animation: pop-in 0.5s ease-in-out;
     top: 0%;
     width: 100%;

@@ -2,7 +2,7 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta charset="utf-8" name="viewport" content="width=1310, initial-scale=1.0" />
+    <meta charset="utf-8" name="viewport" content="width=1320" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>FWD</title>
     <link
@@ -16,60 +16,111 @@
   </head>
   <body>
     <div id="app">
-      <video @ended="onEnd()" v-if="!showPopup" class="player" autoplay controls>
-        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
-        Your browser does not support HTML5 video.
-      </video>
-
-      <div class="popup" :class="!showPopup ? 'popup-out' : 'popup-in'" v-else>
-        <div class="review-section">
-          <div class="headline">
-            <h1>
-              ความคิดเห็นของคุณสำคัญกับเรา<br />
-              กรุณาประเมินความพึงพอใจในบริการครั้งนี้
-            </h1>
-            <span>We value your feedback. Please rate our service.</span>
-          </div>
-          <div class="review-score text-center">
-            <div class="line"></div>
-            <button
-              v-for="(review, index) in reviews"
-              :key="index"
-              :class="!index ? 'ml-0' : ''"
-              @click="sendReview(index)"
-            >
-              <img :src="`assets/images/review/${index}.png`" alt="" />
-
-              <span class="review-text">
-                {{ review }}
-              </span>
-            </button>
-          </div>
-          <div class="thankyou text-center">
-            <h2 class="th">ขอบคุณที่ใช้บริการ</h2>
-            <h4 class="en">THANK YOU</h4>
-          </div>
+      <div class="rotate d-flex" v-if="ort">
+        <div class="align-self-center w-100">
+          <img
+            width="350"
+            src="https://yt3.ggpht.com/a/AGF-l79Dmv-ExaAeqwMLgWlSdZ_JwEOV-bIlsI99_w=s900-c-k-c0xffffffff-no-rj-mo"
+            alt=""
+          />
+          <br />
+          <img src="assets/images/rotate.png" class="w-75" />
+          <h1 style="font-size: 80px">
+            เปลี่ยนหน้าจอเป็นแนวนอนเพื่อรับชมเนื้อหา
+          </h1>
         </div>
-        <!-- review-section -->
-        <div class="video-section">
-          <div class="logo"><img src="assets/images/logo.png" alt="" /></div>
-          <div class="video-list">
-            <div class="video ep1" v-for="(video, index) in videos" :key="index">
-              <a :href="video.url" target="_blank">
-                <div class="play-ico">
-                  <img src="assets/images/play.png" width="64" />
+      </div>
+      <div v-else>
+        <video
+          @ended="onEnd()"
+          v-if="!showPopup"
+          class="player"
+          autoplay
+          muted
+          playsinline
+          controls
+        >
+          <source
+            src="https://online-campaigns.com/campaigns/2019/fwd/assets/video/fwd.mp4"
+            type="video/mp4"
+          />
+          Your browser does not support HTML5 video.
+        </video>
+
+        <div class="popup" :class="!showPopup ? 'popup-out' : 'popup-in'" v-else>
+          <button class="arm">
+            dd
+          </button>
+          <div class="wrapper">
+            <div class="review-section">
+              <div class="aligner">
+                <div class="aligner-item aligner-item--top"></div>
+
+                <div class="aligner-item">
+                  <div class="headline">
+                    <h1>
+                      ความคิดเห็นของคุณสำคัญกับเรา<br />
+                      กรุณาประเมินความพึงพอใจในบริการครั้งนี้
+                    </h1>
+                    <span>We value your feedback. Please rate our service.</span>
+                  </div>
+                  <div class="review-score text-center">
+                    <div class="line"></div>
+                    <button
+                      v-for="(review, index) in reviews"
+                      :key="index"
+                      class="review-btn"
+                      :class="`${!index ? 'ml-0' : ''} review-btn-${index}`"
+                      @click="sendReview(index)"
+                    >
+                      <img
+                        :src="`assets/images/review/${index}.png`"
+                        :class="active == index ?
+                                        'review-active' : ''"
+                      />
+
+                      <span class="review-text">
+                        {{ review }}
+                      </span>
+                    </button>
+                  </div>
+                  <div class="thankyou text-center">
+                    <h2 class="th">ขอบคุณที่ใช้บริการ</h2>
+                    <h4 class="en">THANK YOU</h4>
+                  </div>
                 </div>
-                <div class="video-thumbnail">
-                  <img :src="`assets/images/video-thumbnail/${video.img}`" alt="" />
-                </div>
-                <div class="video-description">
-                  {{ video.text }}
-                </div>
-              </a>
+                <div class="aligner-item aligner-item--bottom"></div>
+              </div>
             </div>
+            <!-- review-section -->
+            <div class="video-section">
+              <div class="scroll">
+                <div class="logo"><img src="assets/images/logo.png" alt="" /></div>
+                <div class="video-list">
+                  <div
+                    class="video"
+                    :class="`ep${index}`"
+                    v-for="(video, index) in videos"
+                    :key="index"
+                  >
+                    <a :href="video.url" target="_blank" @click="videoClick(index+1)">
+                      <div class="play-ico">
+                        <img src="assets/images/play.png" width="64" />
+                      </div>
+                      <div class="video-thumbnail">
+                        <img :src="`assets/images/video-thumbnail/${video.img}`" alt="" />
+                      </div>
+                      <div class="video-description">
+                        {{ video.text }}
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- video-section -->
           </div>
         </div>
-        <!-- video-section -->
       </div>
     </div>
 
@@ -78,6 +129,7 @@
     <script src="assets/js/axios.min.js"></script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/sweetalert2@8.js"></script>
+    <script src="assets/js/TweenMax.min.js"></script>
 
     <script src="assets/js/web-vue.js"></script>
     <script src="assets/js/web.js"></script>
